@@ -186,7 +186,7 @@ const VenueSourcingComponent = () => {
                             />
 
                             {/* Overlay */}
-                            <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-end justify-start p-6">
+                            {/* <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-end justify-start p-6">
                                 <div>
                                     <h4
                                         className="text-white text-xl font-semibold"
@@ -201,7 +201,7 @@ const VenueSourcingComponent = () => {
                                         Downtown · 800 Guests · 5-Star Rated
                                     </p>
                                 </div>
-                            </div>
+                            </div> */}
                         </div>
 
                         {/* Floating Glow Accent */}
