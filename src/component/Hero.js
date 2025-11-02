@@ -61,7 +61,7 @@ export default function HeroSection() {
                     {/* Video Background */}
                     <video
                         className="absolute top-0 left-0 w-full h-full object-cover rounded-t-none rounded-b-[20px]"
-                        src="/assets/videos/hero.mp4"
+                        src="/assets/videos/bannervideo.mp4"
                         autoPlay
                         muted
                         loop>

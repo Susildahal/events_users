@@ -10,7 +10,7 @@ import { BirthdayHeroSection } from "@/component/Birthday/Hero";
 import { Cinzel, Montserrat } from "next/font/google";
 
 import { HeroSection } from "@/component/Birthday/Hero";
-import BirthdayImg from "/public/assets/img/Event of OC/Music/Music.jpg";
+import BirthdayImg from "/public/assets/img/eventimages/345rtfefte.jpg";
 
 
 const beachIdeas = [

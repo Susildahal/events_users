@@ -14,6 +14,12 @@ export const raleway = Raleway({
   display: "swap",
 });
 
+export const montserrat = Montserrat({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700", "700", "900"],
+  variable: "--font-montserrat",
+});
+
 // Dynamic Data
 const contactData = {
   title: "Contact Us",
@@ -83,16 +89,16 @@ const ContactComponent = () => {
           <div className="lg:w-[40%] w-full bg-[rgba(216,216,216,0.9)] rounded-xl p-10 shadow-2xl flex flex-col gap-[12px] lg:-ml-28 mt-[-60px] lg:mt-0 z-10 backdrop-blur-sm"
             data-aos="fade-left"
             data-aos-delay="300">
-            <span className={`${raleway.className} font-medium text-sm text-gray-500 tracking-widest uppercase`}>
+            <span className={`${montserrat.className} font-medium text-sm text-gray-500 tracking-widest uppercase`}>
               {contactData.subtitle}
             </span>
 
             <div className="flex flex-col gap-1">
-              <h2 className={`${raleway.className} text-3xl lg:text-4xl font-bold bg-gradient-to-r from-[#9a7120] to-[#e3c979] bg-clip-text text-transparent`}>
+              <h2 className={`${montserrat.className} text-3xl lg:text-4xl font-bold bg-gradient-to-r from-[#9a7120] to-[#e3c979] bg-clip-text text-transparent`}>
                 {contactData.heading}
               </h2>
 
-              <p className={`${raleway.className} font-medium text-gray-600 text-base leading-relaxed`}>
+              <p className={`${montserrat.className} font-medium text-gray-600 text-base leading-relaxed`}>
                 {contactData.description}
               </p>
             </div>
@@ -106,7 +112,7 @@ const ContactComponent = () => {
                     <div className="p-3 bg-gray-200 rounded-full">
                       <Icon className="w-4 h-4 text-[#9a7120]" />
                     </div>
-                    <span className={`${raleway.className} text-gray-800 font-medium`}>
+                    <span className={`${montserrat.className} text-gray-800 font-medium`}>
                       {item.value}
                     </span>
                   </div>
@@ -124,67 +130,67 @@ const ContactComponent = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 w-full">
             {/* Name */}
             <div className="flex flex-col w-full">
-              <label htmlFor="name" className={`${raleway.className} text-gray-300 font-medium mb-1`}>
+              <label htmlFor="name" className={`${montserrat.className} text-gray-300 font-medium mb-1`}>
                 Name
               </label>
               <input
                 id="name"
                 type="text"
                 placeholder="Your Name"
-                className={`${raleway.className} border-b border-[#D7B26A] focus:border-b-2 focus:outline-none py-2 bg-transparent text-gray-300 w-full`}
+                className={`${montserrat.className} border-b border-[#D7B26A] focus:border-b-2 focus:outline-none py-2 bg-transparent text-gray-300 w-full`}
               />
             </div>
 
             {/* Email */}
             <div className="flex flex-col w-full">
-              <label htmlFor="email" className={`${raleway.className} text-gray-300 font-medium mb-1`}>
+              <label htmlFor="email" className={`${montserrat.className} text-gray-300 font-medium mb-1`}>
                 Email
               </label>
               <input
                 id="email"
                 type="email"
                 placeholder="Your Email"
-                className={`${raleway.className} border-b border-[#D7B26A] focus:border-b-2 focus:outline-none py-2 bg-transparent text-gray-300 w-full`}
+                className={`${montserrat.className} border-b border-[#D7B26A] focus:border-b-2 focus:outline-none py-2 bg-transparent text-gray-300 w-full`}
               />
             </div>
 
             {/* Phone */}
             <div className="flex flex-col w-full">
-              <label htmlFor="phone" className={`${raleway.className} text-gray-300 font-medium mb-1`}>
+              <label htmlFor="phone" className={`${montserrat.className} text-gray-300 font-medium mb-1`}>
                 Phone
               </label>
               <input
                 id="phone"
                 type="text"
                 placeholder="Your Phone"
-                className={`${raleway.className} border-b border-[#D7B26A] focus:border-b-2 focus:outline-none py-2 bg-transparent text-gray-300 w-full`}
+                className={`${montserrat.className} border-b border-[#D7B26A] focus:border-b-2 focus:outline-none py-2 bg-transparent text-gray-300 w-full`}
               />
             </div>
 
             {/* Subject */}
             <div className="flex flex-col w-full">
-              <label htmlFor="subject" className={`${raleway.className} text-gray-300 font-medium mb-1`}>
+              <label htmlFor="subject" className={`${montserrat.className} text-gray-300 font-medium mb-1`}>
                 Subject
               </label>
               <input
                 id="subject"
                 type="text"
                 placeholder="Subject"
-                className={`${raleway.className} border-b border-[#D7B26A] focus:border-b-2 focus:outline-none py-2 bg-transparent text-gray-200 w-full`}
+                className={`${montserrat.className} border-b border-[#D7B26A] focus:border-b-2 focus:outline-none py-2 bg-transparent text-gray-200 w-full`}
               />
             </div>
           </div>
 
           {/* Message Field */}
           <div className="flex flex-col mt-6 w-full">
-            <label htmlFor="message" className={`${raleway.className} text-gray-300 font-medium mb-1`}>
+            <label htmlFor="message" className={`${montserrat.className} text-gray-300 font-medium mb-1`}>
               Message
             </label>
             <textarea
               id="message"
               rows="4"
               placeholder="Write your message..."
-              className={`${raleway.className} border-b border-[#D7B26A] focus:border-b-2 focus:outline-none py-2 bg-transparent text-gray-300 w-full`}
+              className={`${montserrat.className} border-b border-[#D7B26A] focus:border-b-2 focus:outline-none py-2 bg-transparent text-gray-300 w-full`}
             ></textarea>
           </div>
 
@@ -192,7 +198,7 @@ const ContactComponent = () => {
           <div className="mt-8">
             <button
               type="submit"
-              className={`${raleway.className} inline-block px-6 py-2 rounded-md font-medium transition-shadow shadow-sm bg-gradient-to-b from-[#BE9545] to-[#7A5E39] text-white cursor-pointer`}
+              className={`${montserrat.className} inline-block px-6 py-2 rounded-md font-medium transition-shadow shadow-sm bg-gradient-to-b from-[#BE9545] to-[#7A5E39] text-white cursor-pointer`}
             >
               Send Message
             </button>

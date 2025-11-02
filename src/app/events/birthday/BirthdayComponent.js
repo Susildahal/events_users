@@ -7,7 +7,7 @@ import SignatureIdeas from "@/component/Birthday/Signature-ideas";
 import { PackagesComponent } from "@/component/Birthday/Birthday-package";
 import { RunSheetNew } from "@/component/Birthday/Run-sheet";
 import { BirthdayHeroSection } from "@/component/Birthday/Hero";
-import { Cinzel, Montserrat } from "next/font/google";
+import { Cinzel, Montserrat, Raleway } from "next/font/google";
 import { HeroSection } from "@/component/Birthday/Hero";
 import AOS from "aos";
 import "aos/dist/aos.css";
@@ -52,6 +52,7 @@ export const montserrat = Montserrat({
   weight: ["400", "500", "600", "700", "700", "900"],
   variable: "--font-montserrat",
 });
+
 
 export default function BirthdayPage() {
   const [openFaq, setOpenFaq] = useState(null);

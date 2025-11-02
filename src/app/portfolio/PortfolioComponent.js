@@ -16,7 +16,7 @@ import "yet-another-react-lightbox/styles.css";
 import Project1a from "/public/assets/img/Event of OC/Anniversary/Champagne.jpg";
 import Project1b from "/public/assets/img/Event of OC/Anniversary/Drink.jpg";
 import Project1c from "/public/assets/img/Event of OC/Anniversary/Drinks.jpg";
-import Project1d from "/public/assets/img/Event of OC/Anniversary/Pink-Wine.jpg";
+import Project1d from "/public/assets/img/eventimages/e3.jpg";
 import Project1e from "/public/assets/img/Event of OC/Anniversary/Red Wine.jpg";
 
 import { Cinzel, Montserrat } from "next/font/google";
@@ -55,19 +55,22 @@ const projects = [
     ],
     date: "June 2025",
   },
-  {
-    title: "Private Birthday at The Island Rooftop",
-    short_description:
-      "Events OC secured a private rooftop space at The Island for a client’s birthday, accommodating up to 20 guests.",
-    description:
-      "Events OC secured a private rooftop space at The Island for a client’s birthday, accommodating up to 20 guests. The booking was confirmed within a single day, even on a weekend, and included complimentary arrival shots for the group, negotiated as part of the package. The celebration was seamless, and guests left with an unforgettable experience.",
-    images: [Project1e, Project1c, Project1d],
-    reviews: [
-      { name: "John Doe", rating: 5, comment: "Amazing experience! Everything was perfect." },
-      { name: "Jane Smith", rating: 4.5, comment: "Very smooth booking and great venue." },
-    ],
-    date: "June 2025",
-  },
+
+  // {
+  //   title: "Private Birthday at The Island Rooftop",
+  //   short_description:
+  //     "Events OC secured a private rooftop space at The Island for a client’s birthday, accommodating up to 20 guests.",
+  //   description:
+  //     "Events OC secured a private rooftop space at The Island for a client’s birthday, accommodating up to 20 guests. The booking was confirmed within a single day, even on a weekend, and included complimentary arrival shots for the group, negotiated as part of the package. The celebration was seamless, and guests left with an unforgettable experience.",
+  //   images: [Project1e, Project1c, Project1d],
+  //   reviews: [
+  //     { name: "John Doe", rating: 5, comment: "Amazing experience! Everything was perfect." },
+  //     { name: "Jane Smith", rating: 4.5, comment: "Very smooth booking and great venue." },
+  //   ],
+  //   date: "June 2025",
+  // },
+
+
   // {
   //   title: "Private Birthday at The Island Rooftop",
   //   short_description:
@@ -118,7 +121,7 @@ const PortfolioFlexGridOverlay = () => {
       />
 
       {/* Flex Grid */}
-      <div className="flex gap-4">
+      <div className="flex flex-col sm:grid sm:grid-cols-2 lg:flex lg:flex-row gap-6 sm:gap-4">
         {projects.map((project, index) => {
           const isHovered = hoveredCard === index;
           const activeTab = activeTabs[index] || "Description";
@@ -159,7 +162,7 @@ const PortfolioFlexGridOverlay = () => {
                           <motion.button
                             key={tab}
                             onClick={() => handleTabClick(index, tab)}
-                            className={`${raleway.className} px-4 py-1 rounded-full text-sm font-semibold transition-all duration-300 cursor-pointer ${activeTab === tab ? "bg-[#D7B26A] text-black shadow-lg" : "bg-gray-700 text-gray-300"
+                            className={`${montserrat.className} px-4 py-1 rounded-full text-sm font-semibold transition-all duration-300 cursor-pointer ${activeTab === tab ? "bg-[#D7B26A] text-black shadow-lg" : "bg-gray-700 text-gray-300"
                               }`}
                           >
                             {tab}
@@ -177,7 +180,9 @@ const PortfolioFlexGridOverlay = () => {
                         className="text-white mt-2 text-[15px] md:text-[16px] font-montserrat overflow-auto"
                       >
                         {/* Description */}
-                        {activeTab === "Description" && <p className={`${raleway.className} text-justify`}>{project.description}</p>}
+                        {activeTab === "Description" &&
+                          <p className={`${montserrat.className} text-justify text-sm sm:text-base md:text-lg lg:text-base xl:text-lg leading-relaxed`}>{project.description}</p>
+                        }
 
                         {/* Images */}
                         {activeTab === "Images" && (
@@ -207,7 +212,8 @@ const PortfolioFlexGridOverlay = () => {
                                 transition={{ duration: 0.3, delay: idx * 0.1 }}
                               >
                                 {/* Avatar / Initials */}
-                                <div className="w-12 h-12 flex items-center justify-center rounded-full bg-[#D7B26A] text-black font-semibold text-lg">
+                                <div className="w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 lg:w-12 lg:h-12 xl:w-14 xl:h-14 flex items-center justify-center rounded-full bg-[#D7B26A] text-black font-semibold text-base sm:text-lg md:text-xl lg:text-lg xl:text-xl">
+
                                   {review.name
                                     .split(" ")
                                     .map((n) => n[0])
@@ -217,7 +223,7 @@ const PortfolioFlexGridOverlay = () => {
                                 {/* Review Content */}
                                 <div className="flex-1">
                                   <div className="flex items-center justify-between mb-1">
-                                    <h4 className={`font-semibold text-white ${raleway.className}`}>{review.name}</h4>
+                                    <h4 className={`font-semibold text-white ${montserrat.className}`}>{review.name}</h4>
                                     <div className="flex items-center gap-1">
                                       {Array.from({ length: 5 }).map((_, starIdx) => (
                                         <svg
@@ -238,14 +244,14 @@ const PortfolioFlexGridOverlay = () => {
                                       ))}
                                     </div>
                                   </div>
-                                  <p className={`text-gray-200 text-sm ${raleway.className}`}>{review.comment}</p>
+                                  <p className={`text-gray-200 text-sm ${montserrat.className}`}>{review.comment}</p>
                                 </div>
                               </motion.div>
                             ))}
 
                             {/* Static Review Form */}
                             <div className="bg-gray-800/70 p-4 rounded-xl shadow-lg flex flex-col gap-4 mt-6">
-                              <h3 className={`text-white font-semibold ${raleway.className}`}>Leave a Review</h3>
+                              <h3 className={`text-white font-semibold ${montserrat.className}`}>Leave a Review</h3>
 
                               <input
                                 type="text"
@@ -285,12 +291,12 @@ const PortfolioFlexGridOverlay = () => {
               </div>
 
               {/* Bottom text overlay */}
-              <div className="absolute bottom-0 left-0 w-full p-6 text-white z-10 bg-linear-to-t from-black/90 to-transparent rounded-b-3xl transition-all duration-500">
-                <span className={`text-[#D7B26A] ${raleway.className}`}>{project.date}</span>
+              <div className="absolute bottom-0 left-0 w-full p-3 sm:p-6 text-white z-10 bg-linear-to-t from-black/90 to-transparent rounded-b-3xl transition-all duration-500">
+                <span className={`text-[#D7B26A] ${montserrat.className}`}>{project.date}</span>
                 <h3 className="text-[26px] md:text-[28px] font-medium mb-1 tracking-wide" style={{ fontFamily: "var(--font-cinzel-regular)" }}>
                   {project.title}
                 </h3>
-                <p className={`text-gray-300 text-[14px] md:text-[15px] ${raleway.className}`}>
+                <p className={`text-gray-300 text-[14px] md:text-[15px] ${montserrat.className}`}>
                   {project.short_description}
                 </p>
               </div>

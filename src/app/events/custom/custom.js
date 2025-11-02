@@ -9,7 +9,7 @@ import { RunSheetNew } from "@/component/Birthday/Run-sheet";
 import { BirthdayHeroSection } from "@/component/Birthday/Hero";
 import { HeroSection } from "@/component/Birthday/Hero";
 
-import BirthdayImg from "/public/assets/img/Event of OC/Wedding/Rings.jpg";
+import BirthdayImg from "/public/assets/img/eventimages/gg4444.jpg";
 
 import { Cinzel, Montserrat } from "next/font/google";
 

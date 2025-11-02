@@ -19,21 +19,37 @@ import GalleryImg4 from "/public/assets/img/Event of OC/Anniversary/Pink-Wine.jp
 import GalleryImg5 from "/public/assets/img/Event of OC/Places/Opera-House.jpg";
 import GalleryImg6 from "/public/assets/img/Event of OC/Wedding/Bottle opening.jpg";
 
-import annivarsary_one from "/public/assets/img/Event of OC/Anniversary/Drink.jpg";
-import annivarsary_two from "/public/assets/img/Event of OC/Anniversary/Champagne.jpg";
-import annivarsary_three from "/public/assets/img/Event of OC/Anniversary/Drinks.jpg";
-import annivarsary_four from "/public/assets/img/Event of OC/Anniversary/Pink-Wine.jpg";
+import annivarsary_one from "/public/assets/img/eventimages/123.jpg";
+import annivarsary_two from "/public/assets/img/eventimages/2345234324.jpg";
+import annivarsary_three from "/public/assets/img/eventimages/33eeee.jpg";
+import annivarsary_four from "/public/assets/img/eventimages/345rtfefte.jpg";
 
 
-import birthday_one from "/public/assets/img/Event of OC/Birthday/Birthday Celebration 1.jpg";
-import birthday_two from "/public/assets/img/Event of OC/Birthday/Birthday celebration 2.jpg";
-import birthday_three from "/public/assets/img/Event of OC/Birthday/Birthday celebration 3.jpg";
-import birthday_four from "/public/assets/img/Event of OC/Birthday/Birthday Celebration.jpg";
+import birthday_one from "/public/assets/img/eventimages/34ertsdfdfgdfvg.jpg";
+import birthday_two from "/public/assets/img/eventimages/3edfdfsdf.jpg";
+import birthday_three from "/public/assets/img/eventimages/4434234.jpg";
+import birthday_four from "/public/assets/img/eventimages/4r4fr4.jpg";
 
 
-import conference_one from "/public/assets/img/Event of OC/Conference/Conference.jpg";
-import conference_two from "/public/assets/img/Event of OC/Conference/Conference1.jpg";
+import conference_one from "/public/assets/img/eventimages/bvnbvnvbnvbn.jpg";
+import conference_two from "/public/assets/img/eventimages/bvcbcvb.jpg";
 
+import conference_five from "/public/assets/img/eventimages/cvgnvbnvbnvb.jpg";
+import conference_six from "/public/assets/img/eventimages/dfg333.jpg";
+import conference_seven from "/public/assets/img/eventimages/dsadasdasd.jpg";
+
+import conference_eight from "/public/assets/img/eventimages/e1.jpg";
+import conference_nine from "/public/assets/img/eventimages/e2.jpg";
+import conference_ten from "/public/assets/img/eventimages/e3.jpg";
+import conference_eleven from "/public/assets/img/eventimages/ergfdsas.jpg";
+import conference_twelve from "/public/assets/img/eventimages/gg4444.jpg";
+import conference_thirteen from "/public/assets/img/eventimages/sdfsdfsdfsdfsd.jpg";
+
+import conference_fourteen from "/public/assets/img/eventimages/uyjkyujiyt.jpg";
+import conference_fifteen from "/public/assets/img/eventimages/v33333.jpg";
+import conference_sixteen from "/public/assets/img/eventimages/vv33333.jpg";
+
+import conference_seventeen from "/public/assets/img/eventimages/w3ersdrfsdf.jpg";
 
 
 import { Cinzel, Montserrat } from "next/font/google";
@@ -65,7 +81,9 @@ const GalleryComponent = () => {
 
   // Gallery data
   const galleryData = {
-    all: [annivarsary_one, annivarsary_two, annivarsary_three, annivarsary_four, birthday_one, birthday_two, birthday_three, birthday_four, conference_one, conference_two],
+    all: [annivarsary_one, annivarsary_two, annivarsary_three, annivarsary_four, birthday_one, birthday_two, birthday_three, birthday_four, conference_one,
+      conference_two, conference_five, conference_six, conference_seven, conference_eight, conference_nine, conference_ten, conference_eleven, conference_twelve, conference_thirteen, conference_fourteen,
+      conference_fifteen, conference_sixteen, conference_seventeen],
     Anniversary: [annivarsary_one, annivarsary_two, annivarsary_three, annivarsary_four],
     Birthday: [birthday_one, birthday_two, birthday_three, birthday_four],
     Conference: [conference_one, conference_two],

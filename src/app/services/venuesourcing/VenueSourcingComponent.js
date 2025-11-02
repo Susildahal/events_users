@@ -21,7 +21,7 @@ import {
 import { FaBuilding, FaUmbrellaBeach, FaHome, FaCocktail, FaImage, FaWarehouse, FaHotel, FaTree, FaCar, FaShieldAlt, FaMapMarkerAlt, FaUser } from "react-icons/fa";
 
 // Replace with your actual asset
-import VenueImg from "/public/assets/img/Event of OC/Wedding/Wedding Venue 2.jpg";
+import VenueImg from "/public/assets/img/eventimages/v33333.jpg";
 
 const customVenues = [
   { name: "Rooftops ", icon: FaBuilding },

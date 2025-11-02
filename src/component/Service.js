@@ -14,36 +14,36 @@ import "swiper/css/navigation";
 import Left_heading_line from "/public/assets/img/Left.png";
 import Right_heading_line from "/public/assets/img/Right.png";
 // Venue
-import ServiceOne from "/public/assets/img/content_image/service_one .jpg";
-import ServiceTwo from "/public/assets/img/content_image/service_two.jpg";
-import ServiceThree from "/public/assets/img/content_image/service_three.jpg";
-import ServiceFour from "/public/assets/img/content_image/service_four.jpg";
-import ServiceFive from "/public/assets/img/content_image/a-microphone-in-focus-with-blurred-bokeh-lights-in-the-background-creating-a-vibrant-nightlife-atmosphere.-16727451-scaled-e1737059691145.jpg";
+import ServiceOne from "/public/assets/img/eventimages/v33333.jpg";
+import ServiceTwo from "/public/assets/img/eventimages/vv33333.jpg";
+import ServiceThree from "/public/assets/img/eventimages/w3ersdrfsdf.jpg";
+import ServiceFour from "/public/assets/img/eventimages/dsadasdasd.jpg";
+import ServiceFive from "/public/assets/img/eventimages/e2.jpg";
 
 
 // Catering
-import catering_one from "/public/assets/img/Event of OC/Wedding/Dinning 1.jpg";
+import catering_one from "/public/assets/img/eventimages/123.jpg";
 import catering_two from "/public/assets/img/Event of OC/Wedding/Dinning 2.jpg";
 import catering_three from "/public/assets/img/Event of OC/Wedding/DINNING.jpg";
 
 // entertainment
-import entertainment_one from "/public/assets/img/Event of OC/Music/Concert.jpg";
-import entertainment_two from "/public/assets/img/Event of OC/Music/Concert1.jpg";
-import entertainment_three from "/public/assets/img/Event of OC/Music/Concert2.jpg";
-import entertainment_four from "/public/assets/img/Event of OC/Music/DJ.jpg";
-import entertainment_five from "/public/assets/img/Event of OC/Music/DJ1.jpg";
-import entertainment_six from "/public/assets/img/Event of OC/Music/DJ2.jpg";
+import entertainment_one from "/public/assets/img/eventimages/3edfdfsdf.jpg";
+import entertainment_two from "/public/assets/img/eventimages/dfg333.jpg";
+import entertainment_three from "/public/assets/img/eventimages/4r4fr4.jpg";
+import entertainment_four from "/public/assets/img/eventimages/cvgnvbnvbnvb.jpg";
+import entertainment_five from "/public/assets/img/eventimages/e3.jpg";
+import entertainment_six from "/public/assets/img/eventimages/bvnbvnvbnvbn.jpg";
 import entertainment_seven from "/public/assets/img/Event of OC/Music/Music.jpg";
 
 
 // audio
-import audio_one from "/public/assets/img/Event of OC/Wedding/Bottle opening.jpg";
+import audio_one from "/public/assets/img/eventimages/345rtfefte.jpg";
 
 // Photographs 
-import photograph_one from "/public/assets/img/Event of OC/Wedding/Wedding Venue1.jpg";
-import photograph_two from "/public/assets/img/Event of OC/Wedding/People at wedding.jpg";
-import photograph_three from "/public/assets/img/Event of OC/Wedding/Wedding Couple pose 3.jpg";
-import photograph_four from "/public/assets/img/Event of OC/Wedding/Wedding Couple pose 6.jpg";
+import photograph_one from "/public/assets/img/eventimages/bvcbcvb.jpg";
+import photograph_two from "/public/assets/img/eventimages/uyjkyujiyt.jpg";
+import photograph_three from "/public/assets/img/eventimages/345rtfefte.jpg";
+import photograph_four from "/public/assets/img/eventimages/dfg333.jpg";
 
 import { Cinzel, Montserrat, Cormorant_Garamond, Raleway } from "next/font/google";
 
@@ -116,6 +116,7 @@ const photographsImage = [
   { src: photograph_one, title: "Gold Coast", link: "/public/assets/img/Event of OC/Music/DJ.jpg" },
   { src: photograph_two, title: "Gold Coast", link: "/public/assets/img/Event of OC/Music/DJ.jpg" },
   { src: photograph_three, title: "Gold Coast", link: "/public/assets/img/Event of OC/Music/DJ.jpg" },
+  { src: photograph_four, title: "Gold Coast", link: "/public/assets/img/Event of OC/Music/DJ.jpg" },
 ]
 
 export default function Service() {

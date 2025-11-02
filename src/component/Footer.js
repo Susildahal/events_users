@@ -48,7 +48,7 @@ const Footer = () => {
                 <div className="flex justify-center mb-4">
                     <Image src={Logo} alt="EventsOC Logo" width={160} height={95} className="mx-auto" priority />
                 </div>
-                <p className={`text-[#D7B26A]/80 text-sm sm:text-base ${raleway.className} w-[65%] mx-auto`}>
+                <p className={`text-[#D7B26A]/80 text-sm sm:text-base ${montserrat.className} sm:w-[65%] mx-auto`}>
                     We are more than an event planning service — we create worlds where luxury meets wild freedom.
                     Every moment we craft is designed to be felt, remembered, and never replicated.
                 </p>
