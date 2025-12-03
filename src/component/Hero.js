@@ -57,15 +57,43 @@ export default function HeroSection() {
     return (
         <div className="bg-black mt-[83px]">
             <div className="">
-                <section className="relative w-full h-[85vh] overflow-hidden flex items-center justify-center">
+                <section className="relative w-full h-[45vh] sm:h-[85vh] overflow-hidden flex items-center justify-center">
                     {/* Video Background */}
-                    <video
+                    {/* <video
                         className="absolute top-0 left-1/2 -translate-x-1/2 w-[60%] h-[90%] object-cover rounded-t-none rounded-b-[20px]"
                         src="/assets/videos/20251203-112619.mp4"
                         autoPlay
                         muted
                         loop>
-                    </video>
+                    </video> */}
+
+                    <video
+                        className="
+        absolute 
+        top-0 
+        left-1/2 
+        -translate-x-1/2
+
+        /* Width */
+        w-[90%]       /* mobile */
+        sm:w-[75%]    /* tablets */
+        md:w-[60%]    /* desktop */
+
+        /* Height */
+        h-[350px]     /* mobile */
+        sm:h-[260px]  /* tablets */
+        md:h-[90%]  /* desktop */
+
+        object-cover 
+        rounded-t-none 
+        rounded-b-[20px]
+    "
+                        src="/assets/videos/20251203-112619.mp4"
+                        autoPlay
+                        muted
+                        loop
+                    />
+
 
                     {/* Overlay for better text visibility */}
                     <div className="absolute top-0 left-0 w-full h-full bg-black/30 rounded-t-none rounded-b-[20px]"></div>
