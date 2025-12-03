@@ -61,18 +61,18 @@ export default function HeroSection() {
                     {/* Video Background */}
                     <video
                         className="absolute top-0 left-0 w-full h-full object-cover rounded-t-none rounded-b-[20px]"
-                        src="/assets/videos/bannervideo.mp4"
+                        src="/assets/videos/20251203-112619.mp4"
                         autoPlay
                         muted
                         loop>
                     </video>
 
                     {/* Overlay for better text visibility */}
-                    <div className="absolute top-0 left-0 w-full h-full bg-black/60 rounded-t-none rounded-b-[20px]"></div>
+                    <div className="absolute top-0 left-0 w-full h-full bg-black/30 rounded-t-none rounded-b-[20px]"></div>
 
                     {/* Hero Content */}
-                    <div className="container mx-auto relative z-10 flex flex-col items-center justify-center h-full text-center px-4">
-                        <motion.div className={`${cormorant.className} text-white text-4xl md:text-[78px] font-semibold mb-4`}
+                    <div className="container mx-auto relative z-10 flex flex-col items-center justify-end h-full text-center px-4">
+                        {/* <motion.div className={`${cormorant.className} text-white text-4xl md:text-[78px] font-semibold mb-4`}
                             variants={textVariant}
                             initial="hidden"
                             animate="visible"
@@ -85,8 +85,8 @@ export default function HeroSection() {
                             animate="visible"
                             custom={1}>
                             Birthdays , beach & pool parties, brand launches, hens, live music-planned end-to-end.
-                        </motion.span>
-                        <div className="flex gap-4">
+                        </motion.span> */}
+                        <div className="flex gap-4 pb-5">
                             {/* Book Now */}
                             <div>
                                 <button
