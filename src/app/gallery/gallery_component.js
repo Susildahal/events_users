@@ -84,9 +84,9 @@ const GalleryComponent = () => {
   const galleryData = {
     All: [annivarsary_one, annivarsary_two, annivarsary_three, annivarsary_four, birthday_one, birthday_two, birthday_three, birthday_four, conference_one,
       conference_two, conference_five, conference_six, conference_seven, conference_eight, conference_nine, conference_ten, conference_eleven, conference_twelve, conference_thirteen, conference_fourteen,
-      conference_fifteen, conference_sixteen, conference_seventeen, birthday_five],
+      conference_fifteen, conference_sixteen, conference_seventeen, annivarsary_two],
     Anniversary: [annivarsary_one, annivarsary_two, annivarsary_three, annivarsary_four],
-    Birthday: [birthday_five, birthday_one, birthday_two, birthday_three, birthday_four],
+    Birthday: [birthday_four, birthday_one, birthday_two, birthday_three, birthday_four],
     Conference: [conference_one, conference_two],
   };
 

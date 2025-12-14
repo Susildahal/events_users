@@ -135,7 +135,7 @@ const FAQComponent = () => {
       </div>
 
       {/* Category Tabs */}
-      <div className="flex flex-wrap justify-center gap-3 mt-8 mb-10">
+      <div className="flex flex-wrap justify-center gap-[35px] mt-8 mb-10">
         {Object.keys(faqCategories).map((category) => (
           <button
             key={category}
