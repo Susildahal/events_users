@@ -1,7 +1,7 @@
 "use client"
 import React from 'react'
 import VenueSourcingComponent from './style'
-import Header from "@/component/Nav";
+import Header from "@/component/nav_second";
 import Footer from "@/component/Footer";
 
 const page = () => {
@@ -9,7 +9,7 @@ const page = () => {
         <div className="flex flex-col min-h-screen">
             <Header />
 
-            <main className="flex-grow">
+            <main className="grow">
                 <VenueSourcingComponent />
             </main>
 

@@ -1,7 +1,7 @@
 "Use Client"
 import React from 'react'
 import FAQ_Compoenent from "./faq_component";
-import Header from "../../component/Nav";
+import Header from "../../component/nav_second";
 import Footer from "../../component/Footer";
 
 const page = () => {

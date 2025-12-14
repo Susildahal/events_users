@@ -2,7 +2,7 @@
 
 import React from 'react'
 import BeachPage from './beach'
-import Header from "@/component/Nav";
+import Header from "@/component/nav_second";
 import Footer from "@/component/Footer";
 
 const page = () => {

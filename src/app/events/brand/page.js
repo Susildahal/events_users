@@ -1,7 +1,7 @@
 "use client"
 import React from 'react'
 import BrandPage from './brand'
-import Header from "@/component/Nav";
+import Header from "@/component/nav_second";
 import Footer from "@/component/Footer";
 
 const page = () => {

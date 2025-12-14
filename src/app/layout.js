@@ -25,7 +25,6 @@ export default function RootLayout({ children }) {
       <body className={`antialiased ${geistSans.variable} ${geistMono.variable} bg-black`}>
         {/* Preloader always on top */}
         <Preloader />
-
         {/* Page fade-in after preloader */}
         <AnimatePresence mode="wait">
           <motion.main

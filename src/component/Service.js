@@ -1,5 +1,5 @@
 "use client";
-
+// 
 import React, { useState, useEffect } from "react";
 import AOS from "aos";
 import "aos/dist/aos.css";
@@ -13,13 +13,13 @@ import "swiper/css/navigation";
 
 import Left_heading_line from "/public/assets/img/Left.png";
 import Right_heading_line from "/public/assets/img/Right.png";
+
 // Venue
 import ServiceOne from "/public/assets/img/eventimages/v33333.jpg";
 import ServiceTwo from "/public/assets/img/eventimages/vv33333.jpg";
 import ServiceThree from "/public/assets/img/eventimages/w3ersdrfsdf.jpg";
 import ServiceFour from "/public/assets/img/eventimages/dsadasdasd.jpg";
 import ServiceFive from "/public/assets/img/eventimages/e2.jpg";
-
 
 // Catering
 import catering_one from "/public/assets/img/eventimages/123.jpg";
@@ -34,7 +34,6 @@ import entertainment_four from "/public/assets/img/eventimages/cvgnvbnvbnvb.jpg"
 import entertainment_five from "/public/assets/img/eventimages/e3.jpg";
 import entertainment_six from "/public/assets/img/eventimages/bvnbvnvbnvbn.jpg";
 import entertainment_seven from "/public/assets/img/Event of OC/Music/Music.jpg";
-
 
 // audio
 import audio_one from "/public/assets/img/eventimages/345rtfefte.jpg";
@@ -90,7 +89,7 @@ const venueImages = [
   { src: ServiceTwo, title: "Byron Bays", link: "/services/venuesourcing" },
   { src: ServiceThree, title: "Sunshine Coast", link: "/services/venuesourcing" },
   { src: ServiceFour, title: "Gold Coast", link: "/services/venuesourcing" },
-  { src: ServiceFive, title: "Emerald Lounge", link: "/services/venuesourcing" },
+  { src: ServiceFive, title: "Brisbane", link: "/services/venuesourcing" },
 ];
 const cateringImages = [
   { src: catering_one, title: "Gold Coast", link: "/public/assets/img/Event of OC/Music/DJ.jpg" },
