@@ -13,13 +13,6 @@ import { useRouter } from "next/navigation";
 import axiosInstance from "@/config/axios";
 
 
-// Project images
-import Project1a from "../../../public/assets/img/Event of OC/Anniversary/Champagne.jpg";
-import Project1b from "../../../public/assets/img/Event of OC/Anniversary/Drink.jpg";
-import Project1c from "../../../public/assets/img/Event of OC/Anniversary/Drinks.jpg";
-import Project1d from "../../../public/assets/img/eventimages/e3.jpg";
-import Project1e from "../../../public/assets/img/Event of OC/Anniversary/Red Wine.jpg";
-
 import { Cinzel, Montserrat, Raleway } from "next/font/google";
 
 export const cinzel = Cinzel({
@@ -65,14 +58,23 @@ const PortfolioFlipGrid = () => {
   const [reviewForm, setReviewForm] = useState({});
   const [submittingReview, setSubmittingReview] = useState({});
   const [response , setResponse] = useState(null);
-  const fetchPortfolioitems = async () => {
+  const [currentPage, setCurrentPage] = useState(1);
+  const [pagination, setPagination] = useState({ page: 1, limit: 10, total: 0 });
+  
+  const fetchPortfolioitems = async (page = 1) => {
     try {
       const res = await axiosInstance.get("/portfolio",{
         params: {
-        status:true
+          status: true,
+          page: page,
+          limit: 10
         }
       });
       setPortfolioitems(res.data.data);
+      if (res.data.pagination) {
+        setPagination(res.data.pagination);
+      }
+      setCurrentPage(page);
     } catch (error) {
       console.error("Error fetching portfolio items:", error);
     }
@@ -145,8 +147,8 @@ const PortfolioFlipGrid = () => {
   };
 
   useEffect(() => {
-    fetchPortfolioitems();
-  }, []);
+    fetchPortfolioitems(currentPage);
+  }, [currentPage]);
 
   useEffect(() => {
     AOS.init({ duration: 900, offset: 100, once: true, easing: "ease-out-cubic" });
@@ -594,7 +596,30 @@ const PortfolioFlipGrid = () => {
           );
         })}
       </div>
-      </div>
+      
+      {/* Pagination Controls */}
+      {pagination.total > pagination.limit && (
+        <div className="flex justify-between  gap-6 mt-12 mb-8 max-w-7xl mx-auto">
+          <button
+            onClick={() => setCurrentPage(prev => Math.max(1, prev - 1))}
+            disabled={currentPage === 1}
+            className="px-6 py-3 bg-gradient-to-r from-[#BE9545] to-[#7A5E39] text-white font-semibold rounded-lg hover:shadow-[0_0_20px_rgba(190,149,69,0.5)] transition-all duration-300 disabled:opacity-40 disabled:cursor-not-allowed disabled:hover:shadow-none"
+            style={{ fontFamily: "var(--font-montserrat)" }}
+          >
+            Previous
+          </button>
+          
+          <button
+            onClick={() => setCurrentPage(prev => prev + 1)}
+            disabled={currentPage >= Math.ceil(pagination.total / pagination.limit)}
+            className="px-6 py-3 bg-gradient-to-r from-[#BE9545] to-[#7A5E39] text-white font-semibold rounded-lg hover:shadow-[0_0_20px_rgba(190,149,69,0.5)] transition-all duration-300 disabled:opacity-40 disabled:cursor-not-allowed disabled:hover:shadow-none"
+            style={{ fontFamily: "var(--font-montserrat)" }}
+          >
+            Next
+          </button>
+        </div>
+      )}
+    </div>
 
       <style jsx>{`
         .perspective {
