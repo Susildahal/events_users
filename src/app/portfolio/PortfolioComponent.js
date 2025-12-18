@@ -152,6 +152,76 @@ const PortfolioFlipGrid = () => {
     AOS.init({ duration: 900, offset: 100, once: true, easing: "ease-out-cubic" });
   }, []);
 
+  // Add custom scrollbar styles matching theme
+  useEffect(() => {
+    const styleId = 'portfolio-scrollbar-styles';
+    if (!document.getElementById(styleId)) {
+      const style = document.createElement('style');
+      style.id = styleId;
+      style.textContent = `
+        /* Custom Scrollbar for Portfolio */
+        .portfolio-scrollable::-webkit-scrollbar {
+          width: 12px;
+          height: 12px;
+        }
+
+        .portfolio-scrollable::-webkit-scrollbar-track {
+          background: rgba(26, 26, 26, 0.5);
+          border-radius: 6px;
+          border: 1px solid rgba(215, 178, 106, 0.1);
+        }
+
+        .portfolio-scrollable::-webkit-scrollbar-thumb {
+          background: linear-gradient(to bottom, #BE9545, #D7B26A);
+          border-radius: 6px;
+          border: 2px solid rgba(26, 26, 26, 0.5);
+          box-shadow: 0 0 10px rgba(215, 178, 106, 0.3);
+        }
+
+        .portfolio-scrollable::-webkit-scrollbar-thumb:hover {
+          background: linear-gradient(to bottom, #D7B26A, #E8C77A);
+          box-shadow: 0 0 15px rgba(215, 178, 106, 0.5);
+        }
+
+        /* For Firefox */
+        .portfolio-scrollable {
+          scrollbar-width: thin;
+          scrollbar-color: #D7B26A rgba(26, 26, 26, 0.5);
+        }
+
+        /* Custom scrollbar for review section */
+        .reviews-scroll::-webkit-scrollbar {
+          width: 8px;
+        }
+
+        .reviews-scroll::-webkit-scrollbar-track {
+          background: rgba(17, 17, 17, 0.3);
+          border-radius: 4px;
+        }
+
+        .reviews-scroll::-webkit-scrollbar-thumb {
+          background: linear-gradient(180deg, #BE9545 0%, #D7B26A 100%);
+          border-radius: 4px;
+          border: 1px solid rgba(26, 26, 26, 0.3);
+        }
+
+        .reviews-scroll::-webkit-scrollbar-thumb:hover {
+          background: linear-gradient(180deg, #D7B26A 0%, #E8C77A 100%);
+        }
+
+        .reviews-scroll {
+          scrollbar-width: thin;
+          scrollbar-color: #D7B26A rgba(17, 17, 17, 0.3);
+        }
+      `;
+      document.head.appendChild(style);
+    }
+    return () => {
+      const style = document.getElementById(styleId);
+      if (style) style.remove();
+    };
+  }, []);
+
   // Handle click outside to reset flipped cards (mobile/tablet only)
   useEffect(() => {
     if (typeof window === "undefined") return;
@@ -214,7 +284,7 @@ const PortfolioFlipGrid = () => {
       />
 <div className="">
       <div
-        className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6"
+        className="grid grid-cols-1 md:grid-cols-1 lg:grid-cols-1 gap-6 max-w-7xl mx-auto"
       >
         {Portfolioitems.map((project, index) => {
           const activeTab = activeTabs[index] || "Description";
@@ -223,7 +293,7 @@ const PortfolioFlipGrid = () => {
           return (
             <div
               key={index}
-              className="perspective h-[400px] sm:h-[450px] md:h-[500px] w-full cursor-pointer"
+              className="perspective h-[500px] sm:h-[450px] md:h-[500px] w-full cursor-pointer"
               ref={(el) => (cardRefs.current[index] = el)}
               onClick={() => toggleFlip(index)}
             >
@@ -260,7 +330,7 @@ const PortfolioFlipGrid = () => {
                 </div>
 
                 {/* Back Side */}
-                <div className="absolute w-full h-full rotate-x-180 backface-hidden bg-gradient-to-br from-[#1a1a1a] to-[#0a0a0a] rounded-3xl overflow-auto p-4 sm:p-6 text-white border-2 border-[#D7B26A] shadow-2xl">
+                <div className="absolute w-full h-full rotate-x-180 backface-hidden bg-gradient-to-br from-[#1a1a1a] to-[#0a0a0a] rounded-3xl overflow-auto portfolio-scrollable p-4 sm:p-6 text-white border-2 border-[#D7B26A] shadow-2xl">
                   <div className="flex flex-wrap gap-2 sm:gap-3 mb-4">
                     {["Description", "Images", "Reviews"].map((tab) => (
                       <button
@@ -279,7 +349,7 @@ const PortfolioFlipGrid = () => {
                     ))}
                   </div>
 
-                  <div className="text-white mt-2 text-[15px] md:text-[16px] font-montserrat overflow-auto">
+                  <div className="text-white mt-2 text-[15px] md:text-[16px] font-montserrat overflow-auto portfolio-scrollable">
                     {/* Description */}
                     {activeTab === "Description" && (
                       <div className="space-y-3 pt-5">
@@ -360,7 +430,7 @@ const PortfolioFlipGrid = () => {
 
                     {/* Reviews */}
                     {activeTab === "Reviews" && (
-                      <div className="flex flex-col gap-6 mt-2">
+                      <div className="flex flex-col gap-6 mt-2 max-h-[350px] overflow-y-auto reviews-scroll pr-2">
                         {loadingPreviews[project._id || project.id] ? (
                           <div className="text-center text-gray-400 py-8">
                             <p>Loading reviews...</p>
@@ -376,11 +446,14 @@ const PortfolioFlipGrid = () => {
                             </div>
                             <div className="flex-1">
                               <div className="flex items-center justify-between mb-1">
+                                <div className=" flex flex-col">
+                                <p>{review.name}</p>
                                 <h4
                                   className={`font-semibold text-white ${montserrat.className}`}
                                 >
                                   {review.description}
                                 </h4>
+                                </div>
                                 <div className="flex items-center gap-1">
                                   {Array.from({ length:(review.star) }).map((_, starIdx) => (
                                     <svg
