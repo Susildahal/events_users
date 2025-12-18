@@ -159,7 +159,36 @@ const PortfolioFlipGrid = () => {
       const style = document.createElement('style');
       style.id = styleId;
       style.textContent = `
-        /* Custom Scrollbar for Portfolio */
+        /* Global Scrollbar for entire website */
+        ::-webkit-scrollbar {
+          width: 14px;
+          height: 14px;
+        }
+
+        ::-webkit-scrollbar-track {
+          background: rgba(17, 17, 17, 0.8);
+          border-radius: 0;
+        }
+
+        ::-webkit-scrollbar-thumb {
+          background: linear-gradient(180deg, #BE9545 0%, #D7B26A 50%, #BE9545 100%);
+          border-radius: 0;
+          border: 3px solid rgba(17, 17, 17, 0.8);
+          box-shadow: inset 0 0 10px rgba(215, 178, 106, 0.5);
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+          background: linear-gradient(180deg, #D7B26A 0%, #E8C77A 50%, #D7B26A 100%);
+          box-shadow: inset 0 0 15px rgba(215, 178, 106, 0.7);
+        }
+
+        /* Firefox Global Scrollbar */
+        * {
+          scrollbar-width: thin;
+          scrollbar-color: #D7B26A rgba(17, 17, 17, 0.8);
+        }
+
+        /* Custom Scrollbar for Portfolio Cards */
         .portfolio-scrollable::-webkit-scrollbar {
           width: 12px;
           height: 12px;

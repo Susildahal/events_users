@@ -10,7 +10,7 @@ import axiosInstance from "@/config/axios";
 // Lightbox
 import Lightbox from "yet-another-react-lightbox";
 import "yet-another-react-lightbox/styles.css";
-
+import { useQuery } from "@tanstack/react-query";
 
 import { Cinzel, Montserrat } from "next/font/google";
 
@@ -30,9 +30,6 @@ const GalleryComponent = () => {
   const [activeTab, setActiveTab] = useState("All");
   const [lightboxOpen, setLightboxOpen] = useState(false);
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [galleryItems, setGalleryItems] = useState([]);
-  const [categories, setCategories] = useState(["All"]);
-  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     AOS.init({
@@ -42,44 +39,33 @@ const GalleryComponent = () => {
     });
   }, []);
 
-  const fetchGalleryData = async (category = null) => {
-    try {
-      setLoading(true);
-      const params = { status: true };
-      if (category && category !== "All") {
-        params.title = category;
-      }
-      const res = await axiosInstance.get("/gallery", { params: { ...params, limit: 100 } });
-      const data = res.data.data || [];
-      setGalleryItems(data);
-    } catch (error) {
-      console.error("Error fetching gallery data:", error);
-      setGalleryItems([]);
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  const fetchCategories = async () => {
-    try {
+  // Fetch categories with React Query
+  const { data: categories = ["All"], isLoading: categoriesLoading } = useQuery({
+    queryKey: ["gallery-categories"],
+    queryFn: async () => {
       const res = await axiosInstance.get("/gallery", { params: { status: true } });
       const data = res.data.data || [];
-      // Extract unique categories from gallery items
       const uniqueCategories = [...new Set(data.map(item => item.title || item.category).filter(Boolean))];
-      setCategories(["All", ...uniqueCategories]);
-    } catch (error) {
-      console.error("Error fetching categories:", error);
-    }
-  };
+      return ["All", ...uniqueCategories];
+    },
+    staleTime: 5 * 60 * 1000,
+    cacheTime: 10 * 60 * 1000,
+  });
 
-  useEffect(() => {
-    fetchCategories();
-    fetchGalleryData();
-  }, []);
-
-  useEffect(() => {
-    fetchGalleryData(activeTab);
-  }, [activeTab]);
+  // Fetch gallery items with React Query
+  const { data: galleryItems = [], isLoading: loading } = useQuery({
+    queryKey: ["gallery-items", activeTab],
+    queryFn: async () => {
+      const params = { status: true };
+      if (activeTab && activeTab !== "All") {
+        params.title = activeTab;
+      }
+      const res = await axiosInstance.get("/gallery", { params: { ...params, limit: 100 } });
+      return res.data.data || [];
+    },
+    staleTime: 5 * 60 * 1000,
+    cacheTime: 10 * 60 * 1000,
+  });
 
   // Convert API images to lightbox format
   const gallerySrc = galleryItems?.map((item) => item.image || item.url || item.src) || [];
@@ -100,25 +86,29 @@ const GalleryComponent = () => {
       <div className="flex justify-center flex-wrap gap-4 mb-14"
         data-aos="fade-up"
         data-aos-delay="200">
-        {categories.map((tab) => (
-          <button
-            key={tab}
-            onClick={() => setActiveTab(tab)}
-            className={`px-4 sm:px-5 py-2 sm:py-2.5 rounded-full text-xs sm:text-sm md:text-base font-medium transition-all duration-300 cursor-pointer
-              ${activeTab === tab
-                ? "text-black"
-                : "bg-gray-800 text-gray-300 hover:bg-[#BE9545]/20"
-              }`}
-            style={{
-              fontFamily: "var(--font-montserrat)",
-              background: activeTab === tab
-                ? "linear-gradient(to bottom, #BE9545, #7A5E39)"
-                : undefined
-            }}
-          >
-            {tab}
-          </button>
-        ))}
+        {categoriesLoading ? (
+          <div className="text-center text-gray-400 py-4">Loading categories...</div>
+        ) : (
+          categories.map((tab) => (
+            <button
+              key={tab}
+              onClick={() => setActiveTab(tab)}
+              className={`px-4 sm:px-5 py-2 sm:py-2.5 rounded-full text-xs sm:text-sm md:text-base font-medium transition-all duration-300 cursor-pointer
+                ${activeTab === tab
+                  ? "text-black"
+                  : "bg-gray-800 text-gray-300 hover:bg-[#BE9545]/20"
+                }`}
+              style={{
+                fontFamily: "var(--font-montserrat)",
+                background: activeTab === tab
+                  ? "linear-gradient(to bottom, #BE9545, #7A5E39)"
+                  : undefined
+              }}
+            >
+              {tab}
+            </button>
+          ))
+        )}
       </div>
 
       {/* Gallery Grid */}

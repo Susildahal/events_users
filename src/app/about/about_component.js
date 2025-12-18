@@ -17,6 +17,7 @@ import { motion } from "framer-motion";
 import ThreeStepModal from "../../component/Modal"
 import { Leaf, Recycle, Lightbulb, Droplets, Globe2, Plant, Truck, HeartHandshake, Hammer, MessageCircle, Clock, Accessibility, Laptop, BarChart2, Users, Layout, Server, ClipboardCheck } from "lucide-react";
 import axiosInstance from "@/config/axios";
+import { useQuery } from "@tanstack/react-query";
 
 const tools = [
   { title: "Project Clarity", desc: "Detailed timelines, supplier matrices, and guest-flow maps for transparent execution.", icon: <BarChart2 className="w-7 h-7 text-[#BE9545]" /> },
@@ -27,19 +28,16 @@ const tools = [
   { title: "Feedback Analytics", desc: "Post-event reports, guest insights, and engagement metrics for refinement.", icon: <ClipboardCheck className="w-7 h-7 text-[#BE9545]" /> },
 ];
 
-
 const About_component = () => {
-  const [about, setAbout] = useState([]);
-  const aboutdata = () => {
-    axiosInstance.get('/about').then((response) => {
-      setAbout(response.data.data);
-    }).catch((error) => {
-      console.error('There was an error fetching the about data!', error);
-    });
-  };
-  useEffect(() => {
-    aboutdata();
-  }, []);
+  const { data: about = [], isLoading: aboutLoading } = useQuery({
+    queryKey: ["about-page-data"],
+    queryFn: async () => {
+      const res = await axiosInstance.get('/about');
+      return res.data.data || [];
+    },
+    staleTime: 5 * 60 * 1000,
+    cacheTime: 10 * 60 * 1000,
+  });
   
   const features = [
     { icon: <Leaf size={28} className="text-[#BE9545]" />, text: "Eco-conscious materials" },

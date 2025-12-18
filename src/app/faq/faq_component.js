@@ -7,6 +7,7 @@ import SectionHeader from "@/component/Title";
 import axiosInstance from "@/config/axios";
 import AOS from "aos";
 import "aos/dist/aos.css";
+import { useQuery } from "@tanstack/react-query";
 
 import { Cinzel, Montserrat, Raleway } from "next/font/google";
 
@@ -66,12 +67,8 @@ const FALLBACK_FAQS = {
 
 /* =================== COMPONENT =================== */
 const FAQComponent = () => {
-  const [categories, setCategories] = useState([]);
   const [activeCategory, setActiveCategory] = useState(null);
-  const [faqs, setFaqs] = useState([]);
   const [openIndex, setOpenIndex] = useState(null);
-  const [loading, setLoading] = useState(false);
-  const [useFallback, setUseFallback] = useState(false);
 
   /* ========== AOS INIT ========== */
   useEffect(() => {
@@ -83,81 +80,78 @@ const FAQComponent = () => {
     });
   }, []);
 
-  /* ========== FETCH UNIQUE CATEGORIES (NO DUPLICATES) ========== */
-  const getCategories = async () => {
-    try {
-      const res = await axiosInstance.get("/faqs", {
-        params: { status: true ,
-          limit: 100
-         },
-      });
+  /* ========== FETCH CATEGORIES WITH TANSTACK QUERY ========== */
+  const { data: categories = [], isLoading: categoriesLoading } = useQuery({
+    queryKey: ['faq-categories'],
+    queryFn: async () => {
+      try {
+        const res = await axiosInstance.get("/faqs", {
+          params: { status: true, limit: 100 },
+        });
 
-      if (!res.data?.data?.length) throw new Error("Empty");
+        if (!res.data?.data?.length) throw new Error("Empty");
 
-      // ✅ remove duplicate titles
-      const map = new Map();
+        // ✅ remove duplicate titles
+        const map = new Map();
+        res.data.data.forEach((item) => {
+          const title = item?.title;
+          if (title && !map.has(title)) {
+            map.set(title, { id: title, title });
+          }
+        });
 
-      res.data.data.forEach((item) => {
-        const title = item?.title;
-        if (title && !map.has(title)) {
-          map.set(title, { id: title, title });
-        }
-      });
-
-      const uniqueCategories = Array.from(map.values());
-
-      setCategories(uniqueCategories);
-      setActiveCategory(uniqueCategories[0]);
-    } catch (error) {
-      console.warn("Using fallback categories");
-      const fallback = Object.keys(FALLBACK_FAQS).map((title) => ({
-        id: title,
-        title,
-      }));
-      setCategories(fallback);
-      setActiveCategory(fallback[0]);
-    }
-  };
-
-  /* ========== FETCH FAQS BY CATEGORY (STATUS TRUE ONLY) ========== */
-  const getFAQs = async (category) => {
-    try {
-      setLoading(true);
-      setUseFallback(false);
-
-      const res = await axiosInstance.get("/faqs", {
-        params: {
-          title: category.title,
-          status: true,
-          limit: 100,
-        },
-      });
-
-      if (!res.data?.data?.length) {
-        setFaqs(FALLBACK_FAQS[category.title] || []);
-        setUseFallback(true);
-      } else {
-        setFaqs(res.data.data);
+        return Array.from(map.values());
+      } catch (error) {
+        console.warn("Using fallback categories");
+        return Object.keys(FALLBACK_FAQS).map((title) => ({
+          id: title,
+          title,
+        }));
       }
-    } catch (error) {
-      setFaqs(FALLBACK_FAQS[category.title] || []);
-      setUseFallback(true);
-    } finally {
-      setLoading(false);
-    }
-  };
+    },
+    staleTime: 5 * 60 * 1000, // 5 minutes
+    cacheTime: 10 * 60 * 1000, // 10 minutes
+  });
 
-  /* ========== INITIAL LOAD ========== */
-  useEffect(() => {
-    getCategories();
-  }, []);
+  /* ========== FETCH FAQS BY CATEGORY WITH TANSTACK QUERY ========== */
+  const { data: faqs = [], isLoading: faqsLoading } = useQuery({
+    queryKey: ['faqs', activeCategory?.title],
+    queryFn: async () => {
+      if (!activeCategory) return [];
 
-  /* ========== LOAD FAQS ON CATEGORY CHANGE ========== */
+      try {
+        const res = await axiosInstance.get("/faqs", {
+          params: {
+            title: activeCategory.title,
+            status: true,
+            limit: 100,
+          },
+        });
+
+        if (!res.data?.data?.length) {
+          return FALLBACK_FAQS[activeCategory.title] || [];
+        }
+        
+        return res.data.data;
+      } catch (error) {
+        return FALLBACK_FAQS[activeCategory.title] || [];
+      }
+    },
+    enabled: !!activeCategory, // Only run when activeCategory is set
+    staleTime: 5 * 60 * 1000,
+    cacheTime: 10 * 60 * 1000,
+  });
+
+  /* ========== SET INITIAL ACTIVE CATEGORY ========== */
   useEffect(() => {
-    if (activeCategory) {
-      getFAQs(activeCategory);
-      setOpenIndex(null);
+    if (categories.length > 0 && !activeCategory) {
+      setActiveCategory(categories[0]);
     }
+  }, [categories, activeCategory]);
+
+  /* ========== RESET OPEN INDEX ON CATEGORY CHANGE ========== */
+  useEffect(() => {
+    setOpenIndex(null);
   }, [activeCategory]);
 
   const toggleFAQ = (index) => {
@@ -207,8 +201,11 @@ const FAQComponent = () => {
           transition={{ duration: 0.4 }}
           className="max-w-3xl mx-auto space-y-4"
         >
-          {loading ? (
-            <p className="text-center text-gray-400">Loading FAQs...</p>
+          {faqsLoading ? (
+            <div className="text-center py-8">
+              <div className="inline-block animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-[#D7B26A]"></div>
+              <p className="text-gray-400 mt-4">Loading FAQs...</p>
+            </div>
           ) : (
             faqs.map((item, index) => (
               <div
@@ -247,12 +244,6 @@ const FAQComponent = () => {
                 </AnimatePresence>
               </div>
             ))
-          )}
-
-          {useFallback && (
-            <p className="text-center text-xs text-gray-400 mt-6">
-              Showing standard FAQs. Live updates may be temporarily unavailable.
-            </p>
           )}
         </motion.div>
       </AnimatePresence>
