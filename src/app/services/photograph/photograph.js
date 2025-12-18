@@ -117,14 +117,14 @@ const VenueSourcingComponent = () => {
                             className="text-[36px] md:text-[48px] leading-tight text-white font-semibold mt-3 mb-5"
                             style={{ fontFamily: "var(--font-cinzel-regular)" }}
                         >
-                        Candid<span className="text-[#BE9545]"> energy</span>with editorial polish
+                        Candid <span className="text-[#BE9545]"> energy </span> with editorial polish
                         </h2>
 
                         <p
                             className="text-gray-400 text-[16px] md:text-[17px] leading-[1.8] mb-5 text-justify"
                             style={{ fontFamily: "var(--font-montserrat)" }}
                         >
-                            {data?.[0]?.hero?.description || "Our photographers work discreetly to capture real interactions, hero details and the big beats. Delivery is fast, curated and ready for social or press"}
+                            {data?.[0]?.hero?.subtitle || "Our photographers work discreetly to capture real interactions, hero details and the big beats. Delivery is fast, curated and ready for social or press"}
                         </p>
 
                         {/* Highlight Features */}

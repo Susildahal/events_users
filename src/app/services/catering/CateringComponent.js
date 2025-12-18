@@ -113,14 +113,14 @@ const VenueSourcingComponent = () => {
               className="text-[36px] md:text-[48px] leading-tight text-white font-semibold mt-3 mb-5"
               style={{ fontFamily: "var(--font-cinzel-regular)" }}
             >
-              {data?.[0]?.hero?.title || "Menus "}<span className="text-[#BE9545]">{data?.[0]?.hero?.highlightedText || "designed"}</span>{data?.[0]?.hero?.titleSuffix || " for your moment"}
+          Menus  <span className="text-[#BE9545]">designed </span>  for your moment
             </h2>
 
             <p
               className="text-gray-400 text-[16px] md:text-[17px] leading-[1.8] mb-5 text-justify"
               style={{ fontFamily: "var(--font-montserrat)" }}
             >
-              {data?.[0]?.hero?.description || "We partner with leading chefs and caterers to deliver service styles that suit your event: canapés with pace, chef-led stations for theatre, or a slow, generous feast. Beverage programs range from signature cocktails to premium zero-alcohol lists."}
+               { data?.[0]?.hero?.subtitle || "We partner with leading chefs and caterers to deliver service styles that suit your event: canapés with pace, chef-led stations for theatre, or a slow, generous feast. Beverage programs range from signature cocktails to premium zero-alcohol lists."}
             </p>
 
             {/* Highlight Features */}

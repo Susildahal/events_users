@@ -16,7 +16,7 @@ import {
     Sun,
     Home,
     GlassWater,
-    Ship, Car, Hotel, ShieldCheck, MapPin, Users, UtensilsCrossed, Headphones, Sparkles, Flower2, Camera
+    Ship, Car, Hotel, ShieldCheck, MapPin, Users
 } from "lucide-react";
 
 
@@ -114,14 +114,14 @@ const VenueSourcingComponent = () => {
                             className="text-[36px] md:text-[48px] leading-tight text-white font-semibold mt-3 mb-5"
                             style={{ fontFamily: "var(--font-cinzel-regular)" }}
                         >
-                            {data?.[0]?.hero?.title || "Style & "}<span className="text-[#BE9545]">{data?.[0]?.hero?.highlightedText || "Designs"}</span>
+                            Style & <span className="text-[#BE9545]">Designs</span>
                         </h2>
 
                         <p
                             className="text-gray-400 text-[16px] md:text-[17px] leading-[1.8] mb-5 text-justify"
                             style={{ fontFamily: "var(--font-montserrat)" }}
                         >
-                            {data?.[0]?.hero?.description || "Our creative team develops a concept that flows from entrance to after-glow: textures, colour, furniture, signage, tablescapes and feature moments that photograph beautifully and feel effortless in person."}
+                            {data?.[0]?.hero?.subtitle || "Our creative team develops a concept that flows from entrance to after-glow: textures, colour, furniture, signage, tablescapes and feature moments that photograph beautifully and feel effortless in person."}
                         </p>
 
                         {/* Highlight Features */}

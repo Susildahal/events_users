@@ -115,14 +115,14 @@ const VenueSourcingComponent = () => {
                             className="text-[36px] md:text-[48px] leading-tight text-white font-semibold mt-3 mb-5"
                             style={{ fontFamily: "var(--font-cinzel-regular)" }}
                         >
-                       Sculptural<span className="text-[#BE9545]">{data?.[0]?.hero?.highlightedText || " Florals"}</span>
+                       Sculptural <span className="text-[#BE9545]"> Florals</span>
                         </h2>
 
                         <p
                             className="text-gray-400 text-[16px] md:text-[17px] leading-[1.8] mb-5 text-justify"
                             style={{ fontFamily: "var(--font-montserrat)" }}
                         >
-                            {data?.[0]?.hero?.description || "From table meadows and pedestal moments to large-scale installs, we design florals that suit the climate, the space and your palette. Coastal-ready varieties keep their cool; dramatic after-dark tones bring depth when the lights go low."}
+                            { data?.[0]?.hero?.subtitle|| "From table meadows and pedestal moments to large-scale installs, we design florals that suit the climate, the space and your palette. Coastal-ready varieties keep their cool; dramatic after-dark tones bring depth when the lights go low."}
                         </p>
 
                         {/* Highlight Features */}
