@@ -61,7 +61,7 @@ const PortfolioFlipGrid = () => {
   const [response, setResponse] = useState(null);
   const [currentPage, setCurrentPage] = useState(1);
   const [pagination, setPagination] = useState({ page: 1, limit: 10, total: 0 });
-
+  const [portfolioHasImages, setPortfolioHasImages] = useState({});
   const fetchPortfolioitems = async (page = 1) => {
     try {
       const res = await axiosInstance.get("/portfolio", {
@@ -81,6 +81,27 @@ const PortfolioFlipGrid = () => {
     }
   };
 
+
+  // Check image availability for each portfolio item
+  useEffect(() => {
+    const checkImagesForAllPortfolios = async () => {
+      for (const item of Portfolioitems) {
+        const pid = item._id || item.id;
+        try {
+          const res = await axiosInstance.get(`/portfolio/image/${pid}`);
+          const hasImages = res.data?.data && Array.isArray(res.data.data) && res.data.data.length > 0;
+          setPortfolioHasImages(prev => ({ ...prev, [pid]: hasImages }));
+        } catch (error) {
+          console.error(`Error checking images for portfolio ${pid}:`, error);
+          setPortfolioHasImages(prev => ({ ...prev, [pid]: false }));
+        }
+      }
+    };
+    
+    if (Portfolioitems.length > 0) {
+      checkImagesForAllPortfolios();
+    }
+  }, [Portfolioitems]);
   const fetchPortfolioImages = async (portfolioId) => {
     if (portfolioImages[portfolioId]) return; // Already fetched
 
@@ -139,7 +160,6 @@ const PortfolioFlipGrid = () => {
       setPortfolioPreviews(prev => ({ ...prev, [portfolioId]: null }));
       fetchPortfolioPreviews(portfolioId);
 
-
     } catch (error) {
       console.error("Error submitting review:", error);
     } finally {
@@ -161,91 +181,9 @@ const PortfolioFlipGrid = () => {
     if (!document.getElementById(styleId)) {
       const style = document.createElement('style');
       style.id = styleId;
-      // style.textContent = `
-      //   /* Global Scrollbar for entire website */
-      //   ::-webkit-scrollbar {
-      //     width: 14px;
-      //     height: 14px;
-      //   }
+     
 
-      //   ::-webkit-scrollbar-track {
-      //     background: rgba(17, 17, 17, 0.8);
-      //     border-radius: 0;
-      //   }
-
-      //   ::-webkit-scrollbar-thumb {
-      //     background: linear-gradient(180deg, #BE9545 0%, #D7B26A 50%, #BE9545 100%);
-      //     border-radius: 0;
-      //     border: 3px solid rgba(17, 17, 17, 0.8);
-      //     box-shadow: inset 0 0 10px rgba(215, 178, 106, 0.5);
-      //   }
-
-      //   ::-webkit-scrollbar-thumb:hover {
-      //     background: linear-gradient(180deg, #D7B26A 0%, #E8C77A 50%, #D7B26A 100%);
-      //     box-shadow: inset 0 0 15px rgba(215, 178, 106, 0.7);
-      //   }
-
-      //   /* Firefox Global Scrollbar */
-      //   * {
-      //     scrollbar-width: thin;
-      //     scrollbar-color: #D7B26A rgba(17, 17, 17, 0.8);
-      //   }
-
-      //   /* Custom Scrollbar for Portfolio Cards */
-      //   .portfolio-scrollable::-webkit-scrollbar {
-      //     width: 12px;
-      //     height: 12px;
-      //   }
-
-      //   .portfolio-scrollable::-webkit-scrollbar-track {
-      //     background: rgba(26, 26, 26, 0.5);
-      //     border-radius: 6px;
-      //     border: 1px solid rgba(215, 178, 106, 0.1);
-      //   }
-
-      //   .portfolio-scrollable::-webkit-scrollbar-thumb {
-      //     background: linear-gradient(to bottom, #BE9545, #D7B26A);
-      //     border-radius: 6px;
-      //     border: 2px solid rgba(26, 26, 26, 0.5);
-      //     box-shadow: 0 0 10px rgba(215, 178, 106, 0.3);
-      //   }
-
-      //   .portfolio-scrollable::-webkit-scrollbar-thumb:hover {
-      //     background: linear-gradient(to bottom, #D7B26A, #E8C77A);
-      //     box-shadow: 0 0 15px rgba(215, 178, 106, 0.5);
-      //   }
-
-      //   /* For Firefox */
-      //   .portfolio-scrollable {
-      //     scrollbar-width: thin;
-      //     scrollbar-color: #D7B26A rgba(26, 26, 26, 0.5);
-      //   }
-
-      //   /* Custom scrollbar for review section */
-      //   .reviews-scroll::-webkit-scrollbar {
-      //     width: 8px;
-      //   }
-
-      //   .reviews-scroll::-webkit-scrollbar-track {
-      //     background: rgba(17, 17, 17, 0.3);
-      //     border-radius: 4px;
-      //   }
-
-      //   .reviews-scroll::-webkit-scrollbar-thumb {
-      //     background: linear-gradient(180deg, #BE9545 0%, #D7B26A 100%);
-      //     border-radius: 4px;
-      //     border: 1px solid rgba(26, 26, 26, 0.3);
-      //   }
-
-      //   .reviews-scroll::-webkit-scrollbar-thumb:hover {
-      //     background: linear-gradient(180deg, #D7B26A 0%, #E8C77A 100%);
-      //   }
-
-      //   .reviews-scroll {
-      //     scrollbar-width: thin;
-      //     scrollbar-color: #D7B26A rgba(17, 17, 17, 0.3);
-      //   }
-      // `;
+    
       document.head.appendChild(style);
     }
     return () => {
@@ -338,6 +276,8 @@ const PortfolioFlipGrid = () => {
                     <img
                       src={project.image?.src || project.image}
                       alt={project.title}
+                      loading="lazy"
+                      onError={(e) => { e.currentTarget.style.display = 'none'; }}
                       className="object-cover w-full h-full rounded-3xl hover:scale-105 transition-transform duration-500"
                     />
                     <div className="absolute bottom-0 left-0 w-full p-4 bg-gradient-to-t from-black/90 to-transparent rounded-b-3xl text-white">
@@ -346,7 +286,8 @@ const PortfolioFlipGrid = () => {
                           year: 'numeric',
                           month: 'long',
                           day: 'numeric'
-                        })}                    </span>
+                        })}  
+                        </span>
                       <h3
                         className="text-[26px] md:text-[28px] font-medium mb-1 tracking-wide"
                         style={{ fontFamily: "var(--font-cinzel-regular)" }}
@@ -362,23 +303,30 @@ const PortfolioFlipGrid = () => {
                   </div>
 
                   {/* Back Side */}
-                  <div className="absolute w-full h-full rotate-x-180 backface-hidden bg-gradient-to-br from-[#1a1a1a] to-[#0a0a0a] rounded-3xl overflow-auto portfolio-scrollable p-4 sm:p-6 text-white border-2 border-[#D7B26A] shadow-2xl">
+                  <div className="absolute w-full h-full rotate-x-180 backface-hidden bg-gradient-to-br from-[#1a1a1a] to-[#0a0a0a] rounded-3xl overflow-auto portfolio-scrollable p-4 sm:p-6 text-white shadow-2xl">
                     <div className="flex flex-wrap gap-2 sm:gap-3 mb-4">
-                      {["Description", "Images", "Reviews"].map((tab) => (
-                        <button
-                          key={tab}
-                          onClick={(e) => {
-                            e.stopPropagation();
-                            handleTabClick(index, tab, project._id || project.id);
-                          }}
-                          className={`${montserrat.className} px-3 sm:px-4 py-1.5 sm:py-2 rounded-full text-xs sm:text-sm font-semibold transition-all duration-300 cursor-pointer transform hover:scale-105 ${activeTab === tab
-                            ? "bg-gradient-to-r from-[#BE9545] to-[#D7B26A] text-black shadow-lg"
-                            : "bg-gray-700 text-gray-300 hover:bg-gray-600"
-                            }`}
-                        >
-                          {tab}
-                        </button>
-                      ))}
+                      {["Description", "Images", "Reviews"].map((tab) => {
+                        const pid = project._id || project.id;
+                        const hasImages = portfolioHasImages[pid];
+
+                        if (tab === "Images" && !hasImages) return null;
+
+                        return (
+                          <button
+                            key={tab}
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              handleTabClick(index, tab, pid);
+                            }}
+                            className={`${montserrat.className} px-3 sm:px-4 py-1.5 sm:py-2 rounded-full text-xs sm:text-sm font-semibold transition-all duration-300 cursor-pointer transform hover:scale-105 ${activeTab === tab
+                              ? "bg-gradient-to-r from-[#BE9545] to-[#D7B26A] text-black shadow-lg"
+                              : "bg-gray-700 text-gray-300 hover:bg-gray-600"
+                              }`}
+                          >
+                            {tab}
+                          </button>
+                        );
+                      })}
                     </div>
 
                     <div className="text-white mt-2 text-[15px] md:text-[16px] font-montserrat overflow-auto portfolio-scrollable">
@@ -442,7 +390,7 @@ const PortfolioFlipGrid = () => {
                             (portfolioImages[project._id || project.id] || project.images || []).map((img, idx) => (
                               <div
                                 key={idx}
-                                className="w-full aspect-square object-cover rounded-lg h-[120px] sm:h-[160px] md:h-[230px] md:w-[230px] overflow-hidden shadow-md cursor-pointer"
+                                className="w-full aspect-square object-cover rounded-lg h-[120px] sm:h-[160px] md:h-[230px] md:w-[230px] overflow-hidden cursor-pointer"
                                 onClick={(e) => {
                                   e.stopPropagation();
                                   const imagesToShow = portfolioImages[project._id || project.id] || project.images || [];
