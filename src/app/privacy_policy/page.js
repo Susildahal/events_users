@@ -27,10 +27,7 @@ export const montserrat = Montserrat({
 const Page = () => {
     const [isModalOpen, setIsModalOpen] = useState(false);
 
-    // // Open modal automatically when page loads
-    // useEffect(() => {
-    //     setIsModalOpen(true);
-    // }, []);
+ 
     return (
         <div className="flex flex-col min-h-screen bg-black text-white mt-[100px]">
             {/* Header */}

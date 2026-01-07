@@ -58,7 +58,7 @@ const urls = [{
 } ,
 {
     items:" Privacy Policy ",
-    link:"/privacy-policy"
+    link:"/privacy_policy"
 },
 
 ];
