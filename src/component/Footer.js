@@ -62,6 +62,25 @@ const urls = [{
 },
 
 ];
+
+const POPULARSERVICES = [
+    {
+    title : "Venue Sourcing",
+    url :"/services/venuesourcing"
+    },
+    {
+    title :"Catering",
+    url :"/services/catering"
+    },
+    {
+    title :"Styles & Designs",
+    url :"/services/style"
+    },
+    {
+    title :"Floral",
+    url :"/services/floral"
+    }
+];
 const Footer = () => {
     const dispatch = useDispatch();
     const { settings, status, error } = useSelector((state) => state.settings);
@@ -183,16 +202,16 @@ const Footer = () => {
                         POPULAR SERVICES
                     </h3>
                     <ul className={`space-y-2 text-[#b9b9b9] ${raleway.className}`}>
-                        {["Venue Sourcing", "Catering", "Styles & Designs", "Floral"].map((service, idx) => (
-                            <li key={idx}>
+                        {POPULARSERVICES.map((service, idx) => (
+                            <li key={service.title || idx}>
                                 <Link
-                                    href={`/services/${service.toLowerCase().replace(/\s+/g, "")}`}
+                                    href={service.url || '/'}
                                     className="text-[16px] relative hover:text-[#D7B26A] transition duration-300 
                   after:content-[''] after:absolute after:left-0 after:-bottom-[2px] 
                   after:w-0 after:h-[1px] after:bg-[#D7B26A] after:transition-all after:duration-300 
                   hover:after:w-full"
                                 >
-                                    {service}
+                                    {String(service.title || service).trim()}
                                 </Link>
                             </li>
                         ))}
