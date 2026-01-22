@@ -7,7 +7,7 @@ const Founder = () => {
   return (
     <section className="relative py-20 px-6 overflow-hidden">
       {/* Background gradients */}
-      <div className="absolute inset-0 bg-gradient-to-br from-[#1A1A1A] via-[#101010] to-[#0D0D0D]"></div>
+      <div className=""></div>
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(190,149,69,0.08),transparent_60%)]"></div>
 
       <div className="relative container mx-auto max-w-7xl">
