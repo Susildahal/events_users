@@ -100,7 +100,7 @@ const Founder = () => {
                 className="text-[#BE9545] text-[18px] md:text-[20px] italic leading-relaxed"
                 style={{ fontFamily: "var(--font-cinzel-regular)" }}
               >
-                "Well-executed events, designed with intention."
+                &ldquo;Well-executed events, designed with intention.&rdquo;
               </p>
             </motion.div>
           </motion.div>
