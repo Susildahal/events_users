@@ -17,6 +17,7 @@ import { motion } from "framer-motion";
 import ThreeStepModal from "../../component/Modal"
 import { Leaf, Recycle, Lightbulb, Droplets, Globe2, Plant, Truck, HeartHandshake, Hammer, MessageCircle, Clock, Accessibility, Laptop, BarChart2, Users, Layout, Server, ClipboardCheck } from "lucide-react";
 import axiosInstance from "@/config/axios";
+import Founder from "../../component/founder";
 import { useQuery } from "@tanstack/react-query";
 
 const tools = [
@@ -126,6 +127,8 @@ const About_component = () => {
 
         {/* Polaroid Gallery */}
         <PolaroidGallery />
+
+        <Founder />
 
         {/* Mission & Vision */}
         <section className="mt-16 px-6 pb-20">
