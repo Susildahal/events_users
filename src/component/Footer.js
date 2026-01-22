@@ -142,7 +142,9 @@ const Footer = () => {
     return (
         <footer className="bg-[#141414] text-gray-300 pt-10 pb-4">
             {/* Logo and Socials */}
-            <div className="text-center mb-8 px-4 sm:px-6 md:px-12 lg:px-20 xl:px-32 2xl:px-40" data-aos="fade-up">
+            {/* <div className="text-center mb-8 px-4 sm:px-6 md:px-12 lg:px-20 xl:px-32 2xl:px-40" data-aos="fade-up"> */}
+                        <div className="text-center mb-8 px-4 sm:px-6 md:px-12 lg:px-20 xl:px-32 2xl:px-40" >
+
                 <div className="flex justify-center mb-4">
                     <Image src={Logo} alt="EventsOC Logo" width={160} height={95} className="mx-auto" priority />
                 </div>

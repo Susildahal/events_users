@@ -181,6 +181,8 @@ const GalleryComponent = () => {
           on={{ view: ({ index }) => setCurrentIndex(index) }}
         />
       )}
+
+      
     </div>
   );
 };
