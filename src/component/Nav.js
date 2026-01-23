@@ -308,6 +308,9 @@ export default function Navbar() {
                                 >
                                     <div className="bg-black/95 rounded-lg p-4 shadow-lg border border-gray-800/40">
                                         <ul className={`${raleway.className} flex flex-col gap-2 text-white text-base font-medium`}>
+                                                <li>
+                                                <Link href="/">Home</Link>
+                                            </li>
                                             {/* Events with Submenu */}
                                             <li>
                                                 <button
@@ -383,6 +386,7 @@ export default function Navbar() {
                                             </li>
 
                                             {/* Other links */}
+                                          
                                             <li>
                                                 <Link href="/gallery">Gallery</Link>
                                             </li>
@@ -459,6 +463,7 @@ export default function Navbar() {
                                                     key={index}
                                                     className="px-4 py-2 border-b border-[#7A5E39]/60 last:border-b-0 hover:bg-[#7A5E39]/10 transition-all duration-300"
                                                 >
+                                                    
                                                     <Link
                                                         href={item.href}
                                                         className="flex flex-row items-center gap-3 text-white hover:text-[#7A5E39] transition-colors"
@@ -598,6 +603,9 @@ export default function Navbar() {
                         <div className={`md:hidden mt-2 transition-all duration-200 ${mobileOpen ? "block" : "hidden"}`}>
                             <div className="bg-black/95 rounded-lg p-4 shadow-lg border border-gray-800/40">
                                 <ul className={`${raleway.className} flex flex-col gap-2 text-white text-sm font-medium`}>
+                                        <li>
+                                                <Link href="/">Home</Link>
+                                            </li>
                                     {/* Events with Submenu */}
                                     <li>
                                         <button className="w-full text-left flex justify-between items-center" onClick={() => setEventsOpen(!eventsOpen)}>
