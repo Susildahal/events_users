@@ -308,7 +308,7 @@ export default function Navbar() {
                                         <ul className={`${raleway.className} flex flex-col gap-2 text-white text-base font-medium`}>
                                             {/* Events with Submenu */}
                                             <li>
-                                                    <li>
+                                                    <li className="pb-1">
                                                 <Link href="/">Home</Link>
                                             </li>
                                                 <button

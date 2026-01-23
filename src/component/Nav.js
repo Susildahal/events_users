@@ -308,7 +308,7 @@ export default function Navbar() {
                                 >
                                     <div className="bg-black/95 rounded-lg p-4 shadow-lg border border-gray-800/40">
                                         <ul className={`${raleway.className} flex flex-col gap-2 text-white text-base font-medium`}>
-                                                <li>
+                                                <li className="pb-1">
                                                 <Link href="/">Home</Link>
                                             </li>
                                             {/* Events with Submenu */}
@@ -603,7 +603,7 @@ export default function Navbar() {
                         <div className={`md:hidden mt-2 transition-all duration-200 ${mobileOpen ? "block" : "hidden"}`}>
                             <div className="bg-black/95 rounded-lg p-4 shadow-lg border border-gray-800/40">
                                 <ul className={`${raleway.className} flex flex-col gap-2 text-white text-sm font-medium`}>
-                                        <li>
+                                        <li className="pb-1">
                                                 <Link href="/">Home</Link>
                                             </li>
                                     {/* Events with Submenu */}
